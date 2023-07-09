@@ -61,7 +61,7 @@ npm run build
 Ссылка на проект
 https://user-api-nextjs-pages.vercel.app/
 
-Но не работает. Загружаются только страницы не требующие получения данных из DBMongo, например,
+Но не работает на хостинге. Загружаются только страницы не требующие получения данных из DBMongo, например,
 https://user-api-nextjs-pages.vercel.app/
 https://user-api-nextjs-pages.vercel.app/users/userform
 

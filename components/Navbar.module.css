@@ -1,0 +1,32 @@
+
+.NavBarWrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    border: solid 1px grey;
+    background-color: #534ED9;
+    height: 10vh;
+    padding: 5px;
+}
+.MenuButton {
+    width: fit-content;
+    max-width: 30vw;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #97A300;
+    background-color: #F3FD72;
+    border: none;
+    border-radius: 5%;
+    box-shadow: 0 0 10px #000000;
+    margin: 10px;
+}
+.MenuButton:hover {
+    color: #F3FD72;
+    background-color: #97A300}
+.MenuButton:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}

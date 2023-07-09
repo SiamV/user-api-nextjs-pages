@@ -1,0 +1,28 @@
+.usersWrapper {
+    background-color: #f0f1e1;
+    height: 100%;
+}
+.MenuButton {
+    width: fit-content;
+    max-width: 30vw;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #0C0874;
+    background-color: #7673D9;
+    border: none;
+    border-radius: 5%;
+    box-shadow: 0 0 10px #000000;
+    margin: 10px;
+}
+.MenuButton:hover {
+    color: #0C0874;
+    background-color: #534ED9;
+}
+.MenuButton:active {
+    color: #f1f3e7;
+    background-color: #0C0874;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}

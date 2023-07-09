@@ -1,38 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# testTaskUsers
+выполнение тестового задания
 
-## Getting Started
+## Task Description:
+Требуется разработать API сервис для хранения пользователей
+- Сервис должен быть организован по принципу REST API
+- Пароли хэшировать на стороне сервера при создании пользователя
+- Заложить структуру проекта (директории routes, services, etc.)
+- Эндпоинты хранить в суб-роутерах
+- Миграции (alembic)
+- Использовать pipenv
+- Сервис должен иметь CRUD-функции для работы с пользователями
+- CRUD-функции делать классом и вообще использовать ООП
+- Для запросов к сервису и ответов использовать JSON
+- Система должна быть отзывчива и производительна
+- Сервис должен хранить информацию о пользователях в БД (SQLite не использовать!) и выполнять запросы при помощи ORM(использовать такие поля для хранения пользователей: id, username, email. password, register_date).
+- Покрыть код тестами (pytest)
+- Использовать асинхронность (async/await)
+Technical requirements
+Требуется разработать следующие api эндпоинты:
+- POST /user
+- GET /user/<user-id>
+- PUT /user/<user-id>
+- PATCH /user/<user-id>
+- DELETE /user/<user-id>
+- GET /user-list
+- Сервис требуется реализовать при помощи fastapi и любой поддерживаемой им ORM (sql, nosql база даннх на выбор, кроме SQLite)
+- Весь стек должен запускаться через docker-compose
 
-First, run the development server:
+# Решение
+## Архитектура проекта
+Приложение полностью работает на базе Next.Js.
+В отличие от чистого React.js, который работает в браузере клиента (CSR),
+Next.js рендерит разметку на стороне сервера (SSR).
+Это позволяет сделать CEO оптимизацию и подружить APP с поисковыми роботами.
 
-```bash
+Подключение базы данных MongoDB:
+-папки lib/dbConnect.js, models/UserDB.js
+
+Создание REST API:
+-папки pages/api/users
+endPoints доступны по следующим запросам:
+- GET /api/users (получение всех пользователей)
+- GET /api/users/<user-id> (получение одного пользователя по id)
+- POST /api/users (создание нового пользователя)
+- PUT /api/users/<user-id> (редактирование существующего пользователя по id)
+- DELETE /api/users/<user-id> (удаление пользователя по id)
+
+Маршрутизация:
+-папка pages/undex.js, pages/users.js, pages/users/[id].js ...
+
+Вспомогательные файлы и клиентские компоненты:
+- components, common
+
+Проект работает на локалке
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+билдится
+npm run build
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Deploy on Vercel
+Ссылка на проект
+https://user-api-nextjs-pages.vercel.app/
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Но не работает. Загружаются только страницы не требующие получения данных из DBMongo, например,
+https://user-api-nextjs-pages.vercel.app/
+https://user-api-nextjs-pages.vercel.app/users/userform
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Возможно проблема в url при prodaction и следствие не подключается к BD Mongo
+При непосредстенном запросе к GET, например,
+https://user-api-nextjs-pages.vercel.app/api/users
+выдает ошибку 504: GATEWAY_TIMEOUT

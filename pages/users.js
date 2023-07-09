@@ -28,7 +28,7 @@ export default Users
 
 export const getServerSideProps = async () => {
 
-    const users = await axios.get(`${API_URL}/api/users`)
+    const users = await axios.get(`https://user-api-nextjs-pages.vercel.app/api/users`)
 
     return { props: { users: users.data.data } }
 

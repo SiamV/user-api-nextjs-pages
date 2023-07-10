@@ -7,14 +7,14 @@ import Preloader from '../../components/common/Preloader'
 import classes from "../../styles/users.module.css"
 import { API_URL }  from "../../config/index"
 
-export default function Page({ user }) {
+const CreateUserPage = ({ user }) => {
   const router = useRouter()
-  const [reqStatus, setReqStatus] = useState(false)
+  const [responseStatus, setResponseStatus] = useState(false)
 
   const deleteUser = async (idUser) => {
     try {
       const response = await axios.delete(`${API_URL}/api/users/${idUser}`)
-      response.status === 200 ? console.log("DELETE req is good") || setReqStatus(false) : console.log("something wrong")
+      response.status === 200 ? console.log("DELETE req is good") || setResponseStatus(false) : console.log("something wrong")
     } catch (e) {
       console.log(e)
     }
@@ -28,14 +28,14 @@ export default function Page({ user }) {
       <p>Email: {user.email}</p>
       <p>Registration date: {user.register_date}</p>
 
-      {!reqStatus ?
+      {!responseStatus ?
         <div>
           <Link href={"/users"} >
             <button className={classes.MenuButton}
               type='button'
               onClick={() => {
                 deleteUser(router.query.id),
-                  setReqStatus(true)
+                setResponseStatus(true)
               }}>delete
             </button>
           </Link>
@@ -55,3 +55,5 @@ export const getServerSideProps = async ({ params }) => {
   const user = await axios.get(`${API_URL}/api/users/${params.id}`)
   return { props: { user: user.data.data } }
 }
+
+export default CreateUserPage

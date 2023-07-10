@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar'
 
 // const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+const HomePage = () => {
   return (
     <>
       <Head>
@@ -49,3 +49,5 @@ export default function Home() {
     </>
   )
 }
+
+export default HomePage

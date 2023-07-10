@@ -4,7 +4,7 @@ import axios from "axios"
 import classes from "../styles/users.module.css"
 import { API_URL } from "../config/index"
 
-const Users = ({ users }) => {
+const CreateUsersList = ({ users }) => {
 
     return <div className={classes.usersWrapper}>
         <Navbar />
@@ -26,7 +26,7 @@ const Users = ({ users }) => {
     </div>
 }
 
-export default Users
+export default CreateUsersList
 
 export const getServerSideProps = async () => {
 

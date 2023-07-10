@@ -1,7 +1,7 @@
 
 .NavBarWrapper {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: nowrap;
     border: solid 1px grey;
     background-color: #534ED9;

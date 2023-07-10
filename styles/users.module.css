@@ -1,7 +1,9 @@
 .usersWrapper {
     background-color: #f0f1e1;
     height: 100%;
-    margin-left: 10px;
+}
+.usersBlock {
+    padding-left: 20px;
 }
 .MenuButton {
     width: fit-content;

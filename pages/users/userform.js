@@ -7,22 +7,21 @@ import Preloader from "../../components/common/Preloader"
 import classes from "../../styles/users.module.css"
 import {API_URL} from "../../config/index"
 
-const UserForm = () => {
-    const router = useRouter()
+const UserFormCreate = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [reqStatus, setReqStatus] = useState(false)
+    const [responseStatus, setResponseStatus] = useState(false)
 
-    const addUser = async () => {
+    const addNewUserToDB = async () => {
         try {
-            const response = await axios.post(`${API_URL}/api/users`, {
+            const createNewUser = await axios.post(`${API_URL}/api/users`, {
                 name: name,
                 email: email,
                 password: password,
                 register_date: new Date().toLocaleDateString()
             })
-            response.status === 200 ? console.log("POST req is good") || setReqStatus(false) : console.log("something wrong")
+            createNewUser.status === 200 ? console.log("POST req is good") || setResponseStatus(false) : console.log("something wrong")
         } catch (e) {
             console.log(e)
         }
@@ -51,9 +50,9 @@ const UserForm = () => {
                 </div>
 
                 <Link href={"/users"} >
-                    {!reqStatus ?
+                    {!responseStatus ?
                         <button type="button" className={classes.MenuButton}
-                        onClick={() => { addUser(), setReqStatus(true) }}>add new user
+                        onClick={() => { addNewUserToDB(), setResponseStatus(true) }}>add new user
                         </button>
                         : <Preloader />}
 
@@ -64,4 +63,4 @@ const UserForm = () => {
     </>
 }
 
-export default UserForm
+export default UserFormCreate

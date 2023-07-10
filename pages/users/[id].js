@@ -7,8 +7,8 @@ import Preloader from '../../components/common/Preloader'
 import classes from "../../styles/users.module.css"
 import { API_URL }  from "../../config/index"
 
-const CreateUserPage = ({ user }) => {
-  const router = useRouter()
+const CreateUserPage = ({ userFromDB }) => {
+  const getRoutegParh = useRouter()
   const [responseStatus, setResponseStatus] = useState(false)
 
   const deleteUser = async (idUser) => {
@@ -23,10 +23,10 @@ const CreateUserPage = ({ user }) => {
   return <>
     <Navbar />
     <div className={classes.usersWrapper}>
-      <p>User Id : {router.query.id}</p>
-      <p>User name: {user.name}</p>
-      <p>Email: {user.email}</p>
-      <p>Registration date: {user.register_date}</p>
+      <p>User Id : {getRoutegParh.query.id}</p>
+      <p>User name: {userFromDB.name}</p>
+      <p>Email: {userFromDB.email}</p>
+      <p>Registration date: {userFromDB.register_date}</p>
 
       {!responseStatus ?
         <div>
@@ -34,14 +34,14 @@ const CreateUserPage = ({ user }) => {
             <button className={classes.MenuButton}
               type='button'
               onClick={() => {
-                deleteUser(router.query.id),
+                deleteUser(getRoutegParh.query.id),
                 setResponseStatus(true)
               }}>delete
             </button>
           </Link>
           <Link href={{
             pathname: "/users/userform-update",
-            query: { id: user._id, name: user.name, email: user.email, status: false }
+            query: { id: userFromDB._id, name: userFromDB.name, email: userFromDB.email, setStatus: false }
           }}>
             <button className={classes.MenuButton}>update</button>
           </Link>
@@ -52,8 +52,8 @@ const CreateUserPage = ({ user }) => {
 }
 
 export const getServerSideProps = async ({ params }) => {
-  const user = await axios.get(`${API_URL}/api/users/${params.id}`)
-  return { props: { user: user.data.data } }
+  const getUserById = await axios.get(`${API_URL}/api/users/${params.id}`)
+  return { props: { userFromDB: getUserById.data.data } }
 }
 
 export default CreateUserPage

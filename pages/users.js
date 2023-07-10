@@ -4,15 +4,15 @@ import axios from "axios"
 import classes from "../styles/users.module.css"
 import { API_URL } from "../config/index"
 
-const CreateUsersList = ({ users }) => {
+const CreateUsersList = ({ usersList }) => {
 
     return <div className={classes.usersWrapper}>
         <Navbar />
         <div className={classes.usersBlock}>
             <p>Список пользователей</p>
-            <div>{users.map((u) =>
-                <div key={u._id} >
-                    <Link href={`/users/${u._id}`}>{u.name}</Link>
+            <div>{usersList.map((user) =>
+                <div key={user._id} >
+                    <Link href={`/users/${u._id}`}>{user.name}</Link>
                 </div>)}
             </div>
             <Link href={{
@@ -30,8 +30,8 @@ export default CreateUsersList
 
 export const getServerSideProps = async () => {
 
-    const users = await axios.get(`${API_URL}/api/users`)
+    const getUsers = await axios.get(`${API_URL}/api/users`)
 
-    return { props: { users: users.data.data } }
+    return { props: { usersList: getUsers.data.data } }
 
 }

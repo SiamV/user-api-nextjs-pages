@@ -2,7 +2,7 @@ import Link from "next/link"
 import Navbar from "../components/Navbar"
 import axios from "axios"
 import classes from "../styles/users.module.css"
-import { NEXT_URL }  from "../config/index"
+import { API_URL }  from "../config/index"
 
 const Users = ({ users }) => {
 
@@ -28,7 +28,7 @@ export default Users
 
 export const getServerSideProps = async () => {
 
-    const users = await axios.get(`${NEXT_URL}/api/users`)
+    const users = await axios.get(`${API_URL}/api/users`)
 
     return { props: { users: users.data.data } }
 

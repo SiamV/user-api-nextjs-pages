@@ -52,20 +52,6 @@ endPoints доступны по следующим запросам:
 Вспомогательные файлы и клиентские компоненты:
 - components, common
 
-Проект работает на локалке
-npm run dev
-билдится
-npm run build
-
 ### Deploy on Vercel
 Ссылка на проект
 https://user-api-nextjs-pages.vercel.app/
-
-Но не работает на хостинге. Загружаются только страницы не требующие получения данных из DBMongo, например,
-https://user-api-nextjs-pages.vercel.app/
-https://user-api-nextjs-pages.vercel.app/users/userform
-
-Возможно проблема в url при prodaction и следствие не подключается к BD Mongo
-При непосредстенном запросе к GET, например,
-https://user-api-nextjs-pages.vercel.app/api/users
-выдает ошибку 504: GATEWAY_TIMEOUT

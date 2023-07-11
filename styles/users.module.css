@@ -5,6 +5,18 @@
 .usersBlock {
     padding-left: 20px;
 }
+.usersListWrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+.userWrapper {
+    background-color: #f0f1e1;
+    border: 1px dotted grey;
+    border-radius: 10%;
+    margin: 5px 10px 5px 0px;
+    padding: 5px;
+
+}
 .MenuButton {
     width: fit-content;
     max-width: 30vw;
@@ -17,7 +29,8 @@
     border: none;
     border-radius: 5%;
     box-shadow: 0 0 10px #000000;
-    margin: 10px;
+    margin: 20px 30px 10px 0px;
+    padding: 10px;
 }
 .MenuButton:hover {
     color: #0C0874;

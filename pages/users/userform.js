@@ -5,7 +5,7 @@ import axios from "axios"
 import Link from "next/link"
 import Preloader from "../../components/common/Preloader"
 import classes from "../../styles/users.module.css"
-import {API_URL} from "../../config/index"
+import { API_URL } from "../../config/index"
 
 const UserFormCreate = () => {
     const [name, setName] = useState("")
@@ -49,15 +49,19 @@ const UserFormCreate = () => {
                         onChange={(e) => setPassword(e.target.value)} />
                 </div>
 
-                <Link href={"/users"} >
-                    {!responseStatus ?
+
+                {!responseStatus ?
+                    <Link href={"/users"} >
                         <button type="button" className={classes.MenuButton}
-                        onClick={() => { addNewUserToDB(), setResponseStatus(true) }}>add new user
+                            onClick={() => { addNewUserToDB(), setResponseStatus(true) }}>
+                            add new user
                         </button>
-                        : <Preloader />}
+                    </Link>
+                    : <Preloader />
+                }
 
 
-                </Link>
+
             </form>
         </div>
     </>

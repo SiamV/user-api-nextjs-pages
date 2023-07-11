@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Navbar from "../../components/Navbar"
 import axios from "axios"
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import Link from "next/link"
 import Preloader from "../../components/common/Preloader"
 import classes from "../../styles/users.module.css"

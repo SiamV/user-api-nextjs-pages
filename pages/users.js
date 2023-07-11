@@ -12,7 +12,7 @@ const CreateUsersList = ({ usersList }) => {
             <p>Список пользователей</p>
             <div>{usersList.map((user) =>
                 <div key={user._id} >
-                    <Link href={`/users/${u._id}`}>{user.name}</Link>
+                    <Link href={`/users/${user._id}`}>{user.name}</Link>
                 </div>)}
             </div>
             <Link href={{
@@ -26,8 +26,6 @@ const CreateUsersList = ({ usersList }) => {
     </div>
 }
 
-export default CreateUsersList
-
 export const getServerSideProps = async () => {
 
     const getUsers = await axios.get(`${API_URL}/api/users`)
@@ -35,3 +33,5 @@ export const getServerSideProps = async () => {
     return { props: { usersList: getUsers.data.data } }
 
 }
+
+export default CreateUsersList

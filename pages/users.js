@@ -9,7 +9,7 @@ const CreateUsersList = ({ usersList }) => {
     return <div className={classes.usersWrapper}>
         <Navbar />
         <div className={classes.usersBlock}>
-            <h3>Список пользователей</h3>
+            <h3 className={classes.titleUsersList}>Список пользователей</h3>
             <div className={classes.usersListWrapper}>
                 {usersList.map((user) =>
                     <div key={user._id} className={classes.userWrapper}>

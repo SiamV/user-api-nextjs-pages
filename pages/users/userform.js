@@ -31,7 +31,7 @@ const UserFormCreate = () => {
         <Navbar />
         <div className={classes.usersWrapper}>
             <div>Заполните поля</div>
-            <form>
+            <form onSubmit={addNewUserToDB}>
                 <div>
                     <label htmlFor="name">Name: </label>
                     <input type="text" id="name" required
@@ -52,16 +52,13 @@ const UserFormCreate = () => {
 
                 {!responseStatus ?
                     <Link href={"/users"} >
-                        <button type="button" className={classes.MenuButton}
-                            onClick={() => { addNewUserToDB(), setResponseStatus(true) }}>
+                        <button type="submit" className={classes.MenuButton}>
+                            {/* onClick={() => { addNewUserToDB(), setResponseStatus(true) }} */}
                             add new user
                         </button>
                     </Link>
                     : <Preloader />
                 }
-
-
-
             </form>
         </div>
     </>

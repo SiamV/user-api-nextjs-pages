@@ -28,11 +28,25 @@ const CreateUsersList = ({ usersList }) => {
 
 export const getServerSideProps = async () => {
 
-        const getUsers = await axios.get(`${API_URL}/api/users`)
+    const getUsers = await axios.get(`${API_URL}/api/users`)
 
-        return { props: { usersList: getUsers.data.data.reverse() } }
+    return { props: { usersList: getUsers.data.data.reverse() } }
 
 }
+
+{/* export const getStaticPaths = async () => {
+    const getUsers = await axios.get(`${API_URL}/api/users`)
+    return {
+        paths: [
+            {
+                params: {
+                    name: getUsers.data.data._id,
+                },
+            },
+        ],
+        fallback: true, // false or "blocking"
+    }
+} */}
 
 // export const getStaticProps = async () => {
 //     try {

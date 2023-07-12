@@ -4,10 +4,11 @@ import axios from 'axios'
 import Link from "next/link"
 import Preloader from '../../components/common/Preloader'
 import classes from "../../styles/users.module.css"
-import { API_URL }  from "../../config/index"
+import { API_URL } from "../../config/index"
 
 const CreateUserPage = ({ userFromDB }) => {
   const getRoutegParh = useRouter()
+  const idUser = getRoutegParh.query.id
   const [responseStatus, setResponseStatus] = useState(false)
 
   const deleteUser = async (idUser) => {
@@ -21,7 +22,7 @@ const CreateUserPage = ({ userFromDB }) => {
 
   return <>
     <div className={classes.usersWrapper}>
-      <p>User Id : {getRoutegParh.query.id}</p>
+      <p>User Id : {idUser}</p>
       <p>User name: {userFromDB.name}</p>
       <p>Email: {userFromDB.email}</p>
       <p>Registration date: {userFromDB.register_date}</p>
@@ -32,14 +33,14 @@ const CreateUserPage = ({ userFromDB }) => {
             <button className={classes.MenuButton}
               type='button'
               onClick={() => {
-                deleteUser(getRoutegParh.query.id),
-                setResponseStatus(true)
+                deleteUser(idUser),
+                  setResponseStatus(true)
               }}>delete
             </button>
           </Link>
           <Link href={{
-            pathname: "/users/userform-update",
-            query: { id: userFromDB._id, name: userFromDB.name, email: userFromDB.email, setStatus: false }
+            pathname: "/users/userform",
+            query: { status: false, idUser: idUser }
           }}>
             <button className={classes.MenuButton}>update</button>
           </Link>

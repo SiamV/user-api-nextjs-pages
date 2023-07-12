@@ -12,8 +12,7 @@ const HomePage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Navbar />
-        <h2>{GetTextFromLocalDB[0].homePageTitle}</h2>
+        <h3>{GetTextFromLocalDB[0].homePageTitle}</h3>
         <p>{GetTextFromLocalDB[0].homePageDescription}</p>
     </main>
     </>

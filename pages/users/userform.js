@@ -28,7 +28,6 @@ const UserFormCreate = () => {
     }
 
     return <>
-        <Navbar />
         <div className={classes.usersWrapper}>
             <div>Заполните поля</div>
             <form onSubmit={addNewUserToDB}>

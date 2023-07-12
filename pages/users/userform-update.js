@@ -29,7 +29,6 @@ const UserFormUpdate = () => {
     }
 
     return <>
-        <Navbar />
         <div className={classes.usersWrapper}>
             <div>Исправьте данные пользователя</div>
             <form>

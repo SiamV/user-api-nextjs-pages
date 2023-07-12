@@ -7,9 +7,8 @@ import { API_URL } from "../config/index"
 const CreateUsersList = ({ usersList }) => {
 
     return <div className={classes.usersWrapper}>
-        <Navbar />
         <div className={classes.usersBlock}>
-            <h3 className={classes.titleUsersList}>Список пользователей</h3>
+            <h3>Список пользователей</h3>
             <div className={classes.usersListWrapper}>
                 {usersList.map((user) =>
                     <div key={user._id} className={classes.userWrapper}>
@@ -28,12 +27,18 @@ const CreateUsersList = ({ usersList }) => {
     </div>
 }
 
-export const getServerSideProps = async () => {
-
-    const getUsers = await axios.get(`${API_URL}/api/users`)
-
-    return { props: { usersList: getUsers.data.data.reverse() } }
-
+export const getStaticProps = async () => {
+    try {
+        const getUsers = await axios.get(`${API_URL}/api/users`)
+        if (!getUsers.data.data) {
+            return {
+                notFound: true
+            }
+        }
+        return { props: { usersList: getUsers.data.data.reverse() } }
+    } catch {
+        return { props: null }
+    }
 }
 
 

@@ -21,7 +21,6 @@ const CreateUserPage = ({ userFromDB }) => {
   }
 
   return <>
-    <Navbar />
     <div className={classes.usersWrapper}>
       <p>User Id : {getRoutegParh.query.id}</p>
       <p>User name: {userFromDB.name}</p>

@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Navbar from "../components/Navbar"
 import axios from "axios"
 import classes from "../styles/users.module.css"
 import { API_URL } from "../config/index"
@@ -40,5 +39,6 @@ export const getStaticProps = async () => {
         return { notFound: true };
     }
 }
+
 
 export default CreateUsersList

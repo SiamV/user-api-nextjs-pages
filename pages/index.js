@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Navbar from '@/components/Navbar'
 import GetTextFromLocalDB from "../models/localModelDB"
 
 const HomePage = () => {

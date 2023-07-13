@@ -26,41 +26,12 @@ const CreateUsersList = ({ usersList }) => {
     </div>
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
 
-    const getUsers = await axios.get(`${API_URL}/api/users`)
+        const getUsers = await axios.get(`${API_URL}/api/users`)
 
-    return { props: { usersList: getUsers.data.data.reverse() } }
-
+        return { props: { usersList: getUsers.data.data.reverse() } }
 }
-
-{/* export const getStaticPaths = async () => {
-    const getUsers = await axios.get(`${API_URL}/api/users`)
-    return {
-        paths: [
-            {
-                params: {
-                    name: getUsers.data.data._id,
-                },
-            },
-        ],
-        fallback: true, // false or "blocking"
-    }
-} */}
-
-// export const getStaticProps = async () => {
-//     try {
-//         const getUsers = await axios.get(`${API_URL}/api/users`)
-//         if (errors || !getUsers.data.data) {
-//             return {
-//                 notFound: true
-//             }
-//         }
-//         return { props: { usersList: getUsers.data.data.reverse() } }
-//     } catch {
-//         return { notFound: true };
-//     }
-// }
 
 
 export default CreateUsersList

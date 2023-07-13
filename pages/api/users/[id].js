@@ -1,13 +1,13 @@
-import dbConnect from '../../../lib/dbConnect'
+import DbConnect from '../../../lib/dbConnect'
 import UserDB from '../../../models/UsersDB'
 
-export default async function handler(req, res) {
+export default async function Handler(req, res) {
   const {
     query: { id },
     method,
   } = req
 
-  await dbConnect()
+  await DbConnect()
 
   switch (method) {
     case 'GET' /* Get a model by its ID */:

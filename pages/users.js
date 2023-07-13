@@ -26,7 +26,7 @@ const CreateUsersList = ({ usersList }) => {
     </div>
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
 
         const getUsers = await axios.get(`${API_URL}/api/users`)
 

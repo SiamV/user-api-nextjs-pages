@@ -3,7 +3,7 @@ import axios from "axios"
 import classes from "../styles/users.module.css"
 import { API_URL } from "../config/index"
 
-const CreateUsersList = ({ usersList }) => {
+export default function CreateUsersList ({ usersList }) {
 
     return <div className={classes.usersWrapper}>
         <div className={classes.usersBlock}>
@@ -26,12 +26,22 @@ const CreateUsersList = ({ usersList }) => {
     </div>
 }
 
-export const getServerSideProps = async () => {
+export async function getStaticProps() {
+    const getUsers = await axios.get(`${API_URL}/api/users`)
 
-        const getUsers = await axios.get(`${API_URL}/api/users`)
+    return {
+      props: {
+        usersList: getUsers.data.data.reverse()
+      },
+    }
+  }
 
-        return { props: { usersList: getUsers.data.data.reverse() } }
-}
+// export const getServerSideProps = async () => {
+
+//         const getUsers = await axios.get(`${API_URL}/api/users`)
+
+//         return { props: { usersList: getUsers.data.data.reverse() } }
+// }
 
 
-export default CreateUsersList
+// export default CreateUsersList

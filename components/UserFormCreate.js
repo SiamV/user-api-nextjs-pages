@@ -16,6 +16,8 @@ const UserFormCreate = (props) => {
     const [passwordError, setPasswordError] = useState("")
     const [haveErrors, setHaveErrors] = useState(false)
 
+    // const [onButtonAddClick, SetOnButtonAddClick] = useState(false)
+
     useEffect(() => {
         props.userUpdate.name
             ? setName(props.userUpdate.name)
@@ -60,6 +62,27 @@ const UserFormCreate = (props) => {
             setPasswordError("")
         }
     }
+
+    // const onChangeButtonAdd = () => {
+    //     onButtonAddClick ? SetOnButtonAddClick(false) : SetOnButtonAddClick(true)
+    // }
+    // useEffect(() => {
+    //     const addUserinDB = async () => {
+    //         try {
+    //             const response = await axios.post(`${API_URL}/api/users`, {
+    //                 name: name,
+    //                 email: email,
+    //                 password: password,
+    //                 register_date: new Date().toLocaleDateString()
+    //             })
+    //             response.status === 200 ? console.log("POST req is good") || setResponseStatus(false) : console.log("something wrong")
+    //         } catch (e) {
+    //             console.log(e)
+    //         }
+    //     }
+
+    //     console.log ("addUserisDone")
+    // }, [onButtonAddClick])
 
     const addUserinDB = async () => {
         try {

@@ -6,7 +6,8 @@ import { API_URL } from "../config/index"
 import Preloader from "../components/common/Preloader"
 
 
-
+//Here I use React for render html in client side.
+//Because the page don't need for search google robot. But it is optimisation page /users.
 export default function CreateUsersList() {
 
     const [usersList, setUserList] = useState([])

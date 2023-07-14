@@ -6,6 +6,9 @@ import Preloader from '../../components/common/Preloader'
 import classes from "../../styles/users.module.css"
 import { API_URL } from "../../config/index"
 
+
+//Here I use SSR(Next.js) in server side
+//because I wount render htmls this dynamic pages in server for optimisation SEO
 const CreateUserPage = ({ userFromDB }) => {
   const getRoutegParh = useRouter()
   const idUser = getRoutegParh.query.id

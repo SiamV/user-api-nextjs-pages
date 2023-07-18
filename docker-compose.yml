@@ -3,15 +3,15 @@ version: '1'
 services:
   nextjs:
     build: .
+    # env_file: .
     container_name: nextjs
     ports:
       - 3000:3000
-  #   depends_on:
-  #     - mongoose
+
 
   # mongoose:
   #   image: mongo
   #   restart: always
   #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: root
-  #     MONGO_INITDB_ROOT_PASSWORD: example
+  #     MONGO_INITDB_ROOT_USERNAME: avers3452
+  #     MONGO_INITDB_ROOT_PASSWORD: CNnjXyGvwzcVO85a

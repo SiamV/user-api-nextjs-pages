@@ -2,10 +2,11 @@
 .NavBarWrapper {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     flex-wrap: nowrap;
     border: solid 1px grey;
     background-color: #534ED9;
-    height: 10vh;
+    min-height: 10vh;
     padding: 5px;
 }
 .MenuButton {
@@ -20,7 +21,8 @@
     border: none;
     border-radius: 5%;
     box-shadow: 0 0 10px #000000;
-    margin: 10px;
+    margin: 20px 30px 20px 10px;
+    padding: 5px;
 }
 .MenuButton:hover {
     color: #F3FD72;

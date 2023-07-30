@@ -53,14 +53,26 @@ endPoints доступны по следующим запросам:
 - components, common
 
 ### Deploy on Vercel
-Ссылка на проект
+Ссылка на рабочий проект
 https://user-api-nextjs-pages.vercel.app/
 
 ### Скачивание и тестирование проекта на Docker
 git clone https://github.com/SiamV/user-api-nextjs-pages.git
 
-Далее запускаем Docker и выполняем следующие команды:
+Далее запускаем Docker на ПК и выполняем следующие команды в терминале:
 docker-compose build
 docker-compose up
+
+Проект будет работать на http://localhost:3000
+
+### Скачивание и тестирование проекта через установку пакетов
+git clone https://github.com/SiamV/user-api-nextjs-pages.git
+
+Убедитесь, что на ПК установлен node.js
+Далее устанавливаем все пакеты через команду в терминале:
+npm install
+
+Запускаем проект в dev разработке
+npm run dev
 
 Проект будет работать на http://localhost:3000

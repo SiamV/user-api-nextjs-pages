@@ -3,10 +3,10 @@ import classes from "./Navbar.module.css"
 
 const Navbar = () => {
     return <div className={classes.NavBarWrapper}>
-        <Link href="/">
+        <Link href={"/"}>
             <button className={classes.MenuButton}>Главная </button>
         </Link>
-        <Link href="/users">
+        <Link href={"/users"}>
             <button className={classes.MenuButton}>Пользователи </button>
         </Link>
     </div>

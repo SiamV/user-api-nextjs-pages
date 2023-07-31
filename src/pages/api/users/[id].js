@@ -1,5 +1,5 @@
 import DbConnect from '../../../lib/dbConnect'
-import UserDB from '../../../models/UsersDB'
+import UserDB from '../../../models/UsersModel'
 
 export default async function Handler(req, res) {
   const {
@@ -18,7 +18,7 @@ export default async function Handler(req, res) {
         }
         res.status(200).json({ success: true, data: user })
       } catch (error) {
-        res.status(400).json({ success: false })
+        res.status(404).json({ success: false })
       }
       break
 
@@ -33,7 +33,7 @@ export default async function Handler(req, res) {
         }
         res.status(200).json({ success: true, data: user })
       } catch (error) {
-        res.status(400).json({ success: false })
+        res.status(404).json({ success: false })
       }
       break
 
@@ -45,12 +45,12 @@ export default async function Handler(req, res) {
         }
         res.status(200).json({ success: true, data: {} })
       } catch (error) {
-        res.status(400).json({ success: false })
+        res.status(404).json({ success: false })
       }
       break
 
     default:
-      res.status(400).json({ success: false })
+      res.status(404).json({ success: false })
       break
   }
 }

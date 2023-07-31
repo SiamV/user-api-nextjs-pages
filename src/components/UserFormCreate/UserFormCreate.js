@@ -1,9 +1,11 @@
+"use client"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Link from "next/link"
-import classes from "../styles/users.module.css"
-import Preloader from "../components/common/Preloader"
-import { API_URL } from "../config/index"
+import classes from "../../styles/users.module.css"
+import Preloader from "../Preloader/Preloader"
+import { API_URL } from "../../lib/constants/config"
+import { postUser, upateUser } from "@/src/services/api-client"
 
 const UserFormCreate = (props) => {
     const [name, setName] = useState("")
@@ -63,13 +65,8 @@ const UserFormCreate = (props) => {
 
     const addUserinDB = async () => {
         try {
-            const response = await axios.post(`${API_URL}/api/users`, {
-                name: name,
-                email: email,
-                password: password,
-                register_date: new Date().toLocaleDateString()
-            })
-            response.status === 200 ? console.log("POST req is good") || setResponseStatus(false) : console.log("something wrong")
+            await postUser(name, email, password)
+            setResponseStatus(false)
         } catch (e) {
             console.log(e)
         }
@@ -78,11 +75,8 @@ const UserFormCreate = (props) => {
 
     const updateUserInDB = async () => {
         try {
-            const response = await axios.put(`${API_URL}/api/users/${props.userUpdate._id}`, {
-                name: name,
-                email: email
-            })
-            response.status === 200 ? console.log("PUT req is good") || setResponseStatus(false) : console.log("something wrong")
+            await upateUser(props.userUpdate._id, name, email)
+            setResponseStatus(false)
         } catch (e) {
             console.log(e)
         }

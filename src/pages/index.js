@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import GetTextFromLocalDB from "../models/localModelDB"
 
 const HomePage = () => {
   return (
@@ -12,8 +11,8 @@ const HomePage = () => {
       </Head>
       <main>
 
-        <h2>{GetTextFromLocalDB[0].homePageTitle}</h2>
-        <p>{GetTextFromLocalDB[0].homePageDescription}</p>
+        <h2>"Тестовое задание"</h2>
+        <p>"Task Description. @Требуется разработать API сервис для хранения пользователей"</p>
       </main>
     </>
   )

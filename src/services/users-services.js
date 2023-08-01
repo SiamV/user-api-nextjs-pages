@@ -1,25 +1,24 @@
-import { getOne, getAll, postOne, updateOne, deleteOne } from "./api-client";
+import { ApiClient } from "./api-client";
+
+const GetApiClient = new ApiClient;
 
 export const getUsers = async () => {
-    const Users = await getAll();
-    return Users;
+    return await GetApiClient.getAll();
 }
 
 export const getUser = async (id) => {
-    const UserFromDB = await getOne(id);
-    return UserFromDB;
-
+    return await GetApiClient.getOne(id);
 }
 
 export const postUser = async (name, email, password) => {
-    await postOne(name, email, password);
+    await GetApiClient.postOne(name, email, password);
 }
 
 export const updateUser = async (id, name, email) => {
-    await updateOne(id, name, email);
+    await GetApiClient.updateOne(id, name, email);
 
 }
 
 export const deleteUser = async (id) => {
-    await deleteOne(id);
+    await GetApiClient.deleteOne(id);
 }

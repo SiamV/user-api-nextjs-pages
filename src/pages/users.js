@@ -1,26 +1,26 @@
-"use client"
-import Link from "next/link"
-import { useState, useEffect } from 'react'
-import classes from "../styles/users.module.css"
-import Preloader from "../components/Preloader/Preloader"
-import { getUsers } from "../services/api-client"
+"use client";
+import Link from "next/link";
+import { useState, useEffect } from 'react';
+import classes from "../styles/users.module.css";
+import Preloader from "../components/Preloader/Preloader";
+import { getUsers } from "../services/users-services";
 
 
 //Here I use React for render html in client side.
 //Because the page don't need for search google robot.
 export default function CreateUsersList() {
 
-    const [usersList, setUserList] = useState([])
-    const [isLoading, setLoading] = useState(false)
+    const [usersList, setUserList] = useState([]);
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
-        setLoading(true)
+        setLoading(true);
         const getUsersListfromDB = async () => {
-            const Users = await getUsers()
-            setLoading(false)
-            setUserList(Users.data.data.reverse())
+            const Users = await getUsers();
+            setLoading(false);
+            setUserList(Users.data.data.reverse());
         }
-        getUsersListfromDB()
+        getUsersListfromDB();
     }, [])
 
     return <div className={classes.usersWrapper}>

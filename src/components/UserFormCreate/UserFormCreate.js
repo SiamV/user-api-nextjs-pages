@@ -1,11 +1,9 @@
 "use client"
 import { useState, useEffect } from "react"
-import axios from "axios"
 import Link from "next/link"
 import classes from "../../styles/users.module.css"
 import Preloader from "../Preloader/Preloader"
-import { API_URL } from "../../lib/constants/config"
-import { postUser, upateUser } from "@/src/services/api-client"
+import { postUser, updateUser } from "../../services/users-services"
 
 const UserFormCreate = (props) => {
     const [name, setName] = useState("")
@@ -75,7 +73,7 @@ const UserFormCreate = (props) => {
 
     const updateUserInDB = async () => {
         try {
-            await upateUser(props.userUpdate._id, name, email)
+            await updateUser(props.userUpdate._id, name, email)
             setResponseStatus(false)
         } catch (e) {
             console.log(e)

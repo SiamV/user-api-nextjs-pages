@@ -1,9 +1,9 @@
-import UserFormCreate from "../../components/UserFormCreate/UserFormCreate"
-import { useRouter } from "next/router"
-import { getUser } from "@/src/services/api-client"
+import UserFormCreate from "../../components/UserFormCreate/UserFormCreate";
+import { useRouter } from "next/router";
+import { getUser } from "../../services/users-services";
 
 const Form = ({ userFromDB }) => {
-    const getRouterPath = useRouter()
+    const getRouterPath = useRouter();
 
     return (
         <UserFormCreate
@@ -15,10 +15,10 @@ const Form = ({ userFromDB }) => {
 
 export const getServerSideProps = async ({ query }) => {
     if (query.idUser) {
-        const user = await getUser(query.idUser)
+        const user = await getUser(query.idUser);
         return { props: { userFromDB: user.data.data } }
     }
     return { props: { userFromDB: {} } }
 }
 
-export default Form
+export default Form;

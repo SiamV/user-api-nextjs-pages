@@ -1,25 +1,25 @@
-import { useRouter } from 'next/router'
-import { useState } from "react"
-import Link from "next/link"
-import Preloader from '../../components/Preloader/Preloader'
-import classes from "../../styles/users.module.css"
-import { deleteUser, getUser } from '@/src/services/api-client'
+import { useRouter } from 'next/router';
+import { useState } from "react";
+import Link from "next/link";
+import Preloader from '../../components/Preloader/Preloader';
+import classes from "../../styles/users.module.css";
+import { deleteUser, getUser } from '../../services/users-services';
 
 
 
 //Here I use SSR(Next.js) in server side
 //because I wount render htmls this dynamic pages in server for optimisation SEO
 const CreateUserPage = ({ userFromDB }) => {
-  const getRoutegParh = useRouter()
-  const idUser = getRoutegParh.query.id
-  const [responseStatus, setResponseStatus] = useState(false)
+  const getRoutegParh = useRouter();
+  const idUser = getRoutegParh.query.id;
+  const [responseStatus, setResponseStatus] = useState(false);
 
   const deleteUserFromDB = async (idUser) => {
     try {
-      await deleteUser(idUser)
-      setResponseStatus(false)
+      await deleteUser(idUser);
+      setResponseStatus(false);
     } catch (e) {
-      console.log(`Ошибка ${e.name} : ${e.message} \n ${e.stack}`)
+      console.log(`Ошибка ${e.name} : ${e.message} \n ${e.stack}`);
     }
   }
 
@@ -54,8 +54,8 @@ const CreateUserPage = ({ userFromDB }) => {
 }
 
 export const getServerSideProps = async ({ params }) => {
-  const user = await getUser(params.id)
+  const user = await getUser(params.id);
   return { props: { userFromDB: user.data.data } }
 }
 
-export default CreateUserPage
+export default CreateUserPage;

@@ -1,8 +1,8 @@
 import DbConnect from '../../../lib/dbConnect';
-import UserDB from '../../../models/UsersModel'
+import UserDB from '../../../models/UsersModel';
 ;
 export default async function Handler(req, res) {
-  const { method } = req
+  const { method } = req;
 
   await DbConnect();
 
@@ -14,19 +14,22 @@ export default async function Handler(req, res) {
       } catch (error) {
         res.status(404).json({ success: false });
       }
-      break
+      break;
     case 'POST':
       try {
         const user = await UserDB.create(
-          req.body
+          {
+            ...req.body,
+            register_date: new Date().toLocaleDateString()
+          }
         ) /* create a new model in the database */
         res.status(200).json({ success: true, data: user });
       } catch (error) {
         res.status(404).json({ success: false });
       }
-      break
+      break;
     default:
       res.status(404).json({ success: false });
-      break
+      break;
   }
 }

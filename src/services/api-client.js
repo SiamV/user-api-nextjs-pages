@@ -23,8 +23,7 @@ export class ApiClient {
             await axios.post(`${API_URL}`, {
                 name: name,
                 email: email,
-                password: password,
-                register_date: new Date().toLocaleDateString()
+                password: password
             })
         } catch (e) {
             console.log(`Ошибка ${e.name} : ${e.message} \n ${e.stack}`);

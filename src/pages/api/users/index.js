@@ -1,10 +1,8 @@
 import DbConnect from '../../../lib/dbConnect';
 import UserDB from '../../../models/UsersModel';
 ;
-export default async function Handler(req, res) {
+const handler = async (req, res) => {
   const { method } = req;
-
-  await DbConnect();
 
   switch (method) {
     case 'GET':
@@ -33,3 +31,5 @@ export default async function Handler(req, res) {
       break;
   }
 }
+
+export default DbConnect(handler);

@@ -1,4 +1,4 @@
-import DbConnect from '../../../lib/dbConnect';
+import dbConnect from '../../../lib/dbConnect';
 import UserDB from '../../../models/UsersModel';
 ;
 const handler = async (req, res) => {
@@ -32,4 +32,4 @@ const handler = async (req, res) => {
   }
 }
 
-export default DbConnect(handler);
+export default dbConnect(handler);

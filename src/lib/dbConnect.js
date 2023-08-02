@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const MONGODB_URI = process.env.MONGODB_URI
 
-const connectDB = handler => async (req, res) => {
+const dbConnect = handler => async (req, res) => {
   if (mongoose.connections[0].readyState) {
     // If DB is connected use current connection
     return handler(req, res);
@@ -12,7 +12,7 @@ const connectDB = handler => async (req, res) => {
   return handler(req, res);
 };
 
-export default connectDB;
+export default dbConnect;
 
 
 

@@ -17,7 +17,8 @@ const UserSchema = new mongoose.Schema({
   },
   "register_date": {
     type: String,
-    require: true
+    require: true,
+    default: new Date().toLocaleDateString()
   },
 }, {
   versionKey: false

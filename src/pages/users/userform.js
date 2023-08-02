@@ -1,9 +1,10 @@
 import UserFormCreate from "../../components/UserFormCreate/UserFormCreate";
 import { useRouter } from "next/router";
-import { getUser } from "../../services/users-services";
+import { UserService } from "../../services/user.service";
 
 const Form = ({ userFromDB }) => {
     const getRouterPath = useRouter();
+    const GetUserService = new UserService();
 
     return (
         <UserFormCreate
@@ -15,7 +16,8 @@ const Form = ({ userFromDB }) => {
 
 export const getServerSideProps = async ({ query }) => {
     if (query.idUser) {
-        const user = await getUser(query.idUser);
+        const GetUserService = new UserService();
+        const user = await GetUserService.getUser(query.idUser);
         return { props: { userFromDB: user.data.data } }
     }
     return { props: { userFromDB: {} } }

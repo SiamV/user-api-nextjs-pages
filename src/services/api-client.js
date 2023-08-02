@@ -12,7 +12,7 @@ export class ApiClient {
 
     async getOne(id) {
         try {
-            return await axios.get(`${API_URL}/${id}`).then(res => res);
+            return await axios.get(`${API_URL}/${id}`);
         } catch (e) {
             console.log(`Ошибка ${e.name} : ${e.message} \n ${e.stack}`);
         }

@@ -3,12 +3,14 @@ import Link from "next/link";
 import { useState, useEffect } from 'react';
 import classes from "../styles/users.module.css";
 import Preloader from "../components/Preloader/Preloader";
-import { getUsers } from "../services/users-services";
+import { UserService } from "../services/user.service";
 
 
 //Here I use React for render html in client side.
 //Because the page don't need for search google robot.
 export default function CreateUsersList() {
+
+    const GetUserService = new UserService();
 
     const [usersList, setUserList] = useState([]);
     const [isLoading, setLoading] = useState(false);
@@ -16,7 +18,7 @@ export default function CreateUsersList() {
     useEffect(() => {
         setLoading(true);
         const getUsersListfromDB = async () => {
-            const Users = await getUsers();
+            const Users = await GetUserService.getUsers();
             setLoading(false);
             setUserList(Users.data.data.reverse());
         }

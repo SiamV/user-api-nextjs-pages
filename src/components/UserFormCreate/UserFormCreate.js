@@ -1,20 +1,21 @@
-"use client"
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import classes from "../../styles/users.module.css"
-import Preloader from "../Preloader/Preloader"
-import { postUser, updateUser } from "../../services/users-services"
+"use client";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import classes from "../../styles/users.module.css";
+import Preloader from "../Preloader/Preloader";
+import { UserService } from "../../services/user.service";
 
 const UserFormCreate = (props) => {
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [responseStatus, setResponseStatus] = useState(false)
+    const GetUserService = new UserService();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [responseStatus, setResponseStatus] = useState(false);
 
-    const [nameError, setNameError] = useState("")
-    const [emailError, setEmailError] = useState("")
-    const [passwordError, setPasswordError] = useState("")
-    const [haveErrors, setHaveErrors] = useState(false)
+    const [nameError, setNameError] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [haveErrors, setHaveErrors] = useState(false);
 
     useEffect(() => {
         props.userUpdate.name
@@ -33,24 +34,24 @@ const UserFormCreate = (props) => {
     }, [nameError, emailError])
 
     const nameHandler = (e) => {
-        setName(e.target.value)
+        setName(e.target.value);
         !e.target.value
             ? (setNameError("имя не может быть пустым!"))
             : (setNameError(""))
     }
 
     const emailHandler = (e) => {
-        setEmail(e.target.value)
+        setEmail(e.target.value);
         const regularExpression = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         if (!regularExpression.test(String(e.target.value).toLowerCase())) {
-            setEmailError("введите корректный email")
+            setEmailError("введите корректный email");
         } else {
-            setEmailError("")
+            setEmailError("");
         }
     }
 
     const passwordHandler = (e) => {
-        setPassword(e.target.value)
+        setPassword(e.target.value);
         if (e.target.value.length < 6) {
             setPasswordError("введите пароль менее 6 символов")
             if (!e.target.value) {
@@ -63,20 +64,20 @@ const UserFormCreate = (props) => {
 
     const addUserinDB = async () => {
         try {
-            await postUser(name, email, password)
-            setResponseStatus(false)
+            await GetUserService.postUser(name, email, password);
+            setResponseStatus(false);
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
     }
 
 
     const updateUserInDB = async () => {
         try {
-            await updateUser(props.userUpdate._id, name, email)
-            setResponseStatus(false)
+            await GetUserService.updateUser(props.userUpdate._id, name, email);
+            setResponseStatus(false);
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
 
     }

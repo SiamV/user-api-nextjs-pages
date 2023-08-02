@@ -16,7 +16,7 @@ const handler = async (req, res) => {
         }
         res.status(200).json({ success: true, data: user });
       } catch (error) {
-        res.status(404).json({ success: false });
+        res.status(400).json({ success: false });
       }
       break
 
@@ -31,7 +31,7 @@ const handler = async (req, res) => {
         }
         res.status(200).json({ success: true, data: user });
       } catch (error) {
-        res.status(404).json({ success: false });
+        res.status(400).json({ success: false });
       }
       break;
 
@@ -43,7 +43,7 @@ const handler = async (req, res) => {
         }
         res.status(200).json({ success: true, data: {} })
       } catch (error) {
-        res.status(404).json({ success: false });
+        res.status(400).json({ success: false });
       }
       break;
 

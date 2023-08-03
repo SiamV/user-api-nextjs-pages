@@ -1,7 +1,8 @@
 import axios from "axios";
 import { API_URL } from "../lib/constants/config";
 
-export class ApiClient {
+class ApiClient {
+
     async getAll() {
         try {
             return await (await axios.get(`${API_URL}`)).data.data;
@@ -49,3 +50,5 @@ export class ApiClient {
         }
     };
 }
+
+export const apiClient = new ApiClient();

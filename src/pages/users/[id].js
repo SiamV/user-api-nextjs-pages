@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Preloader from '../../components/Preloader/Preloader';
 import classes from "../../styles/users.module.css";
-import { UserService } from '../../services/user.service';
+import { userService } from '../../services/user.service';
 
 
 
@@ -16,7 +16,7 @@ const CreateUserPage = ({ userFromDB }) => {
 
   const deleteUserFromDB = async (idUser) => {
     try {
-      await UserService.deleteUser(idUser);
+      await userService.deleteUser(idUser);
       setResponseStatus(false);
     } catch (e) {
       console.log(`Ошибка ${e.name} : ${e.message} \n ${e.stack}`);
@@ -54,7 +54,7 @@ const CreateUserPage = ({ userFromDB }) => {
 }
 
 export const getServerSideProps = async ({ params }) => {
-  const user = await UserService.getUser(params.id);
+  const user = await userService.getUser(params.id);
   return { props: { userFromDB: user } }
 }
 

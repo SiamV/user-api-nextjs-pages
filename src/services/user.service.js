@@ -1,23 +1,25 @@
-import { ApiClient } from "./api-client";
+import { apiClient } from "./api-client";
 
-class GetService {
-    GetApiClient = new ApiClient();
+class UserService {
+    constructor(api) {
+        this.api = api;
+      }
 
     async getUsers() {
-        return await this.GetApiClient.getAll();
+        return await this.api.getAll();
     }
     async getUser(id) {
-        return await this.GetApiClient.getOne(id);
+        return await this.api.getOne(id);
     }
     async postUser(name, email, password) {
-        await this.GetApiClient.postOne(name, email, password);
+        await this.api.postOne(name, email, password);
     }
     async updateUser(id, name, email) {
-        await this.GetApiClient.updateOne(id, name, email);
+        await this.api.updateOne(id, name, email);
     }
     async deleteUser(id) {
-        await this.GetApiClient.deleteOne(id);
+        await this.api.deleteOne(id);
     }
 }
 
-export const UserService = new GetService();
+export const userService = new UserService(apiClient);

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import classes from "../../styles/users.module.css";
 import Preloader from "../Preloader/Preloader";
-import { UserService } from "../../services/user.service";
+import { userService } from "../../services/user.service";
 
 const UserFormCreate = ({userUpdate, statusForm}) => {
     const [name, setName] = useState("");
@@ -63,7 +63,7 @@ const UserFormCreate = ({userUpdate, statusForm}) => {
 
     const addUserinDB = async () => {
         try {
-            await UserService.postUser(name, email, password);
+            await userService.postUser(name, email, password);
             setResponseStatus(false);
         } catch (e) {
             console.log(e);
@@ -73,7 +73,7 @@ const UserFormCreate = ({userUpdate, statusForm}) => {
 
     const updateUserInDB = async () => {
         try {
-            await UserService.updateUser(userUpdate._id, name, email);
+            await userService.updateUser(userUpdate._id, name, email);
             setResponseStatus(false);
         } catch (e) {
             console.log(e);

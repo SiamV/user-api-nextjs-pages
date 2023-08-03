@@ -13,15 +13,3 @@ const dbConnect = handler => async (req, res) => {
 };
 
 export default dbConnect;
-
-
-
-
-
-// import mongoose from 'mongoose'
-
-// const MONGODB_URI = process.env.MONGODB_URI
-
-// const DbConnect = async () => mongoose.connect(`${MONGODB_URI}`)
-
-// export default DbConnect

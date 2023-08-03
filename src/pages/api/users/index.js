@@ -1,11 +1,13 @@
 import dbConnect from '../../../lib/dbConnect';
 import UserDB from '../../../models/UsersModel';
-;
+// import { GetEndPoints } from '../../../servicesEndPoints/endPoins';
+
 const handler = async (req, res) => {
   const { method } = req;
 
   switch (method) {
     case 'GET':
+      /* GetEndPoints.metodGetAll() */
       try {
         const users = await UserDB.find({}); /* find all the data in our database */
         res.status(200).json({ success: true, data: users });

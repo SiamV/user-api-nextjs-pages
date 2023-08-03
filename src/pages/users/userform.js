@@ -4,7 +4,6 @@ import { UserService } from "../../services/user.service";
 
 const Form = ({ userFromDB }) => {
     const getRouterPath = useRouter();
-    const GetUserService = new UserService();
 
     return (
         <UserFormCreate
@@ -16,9 +15,8 @@ const Form = ({ userFromDB }) => {
 
 export const getServerSideProps = async ({ query }) => {
     if (query.idUser) {
-        const GetUserService = new UserService();
-        const user = await GetUserService.getUser(query.idUser);
-        return { props: { userFromDB: user.data.data } }
+        const user = await UserService.getUser(query.idUser);
+        return { props: { userFromDB: user } }
     }
     return { props: { userFromDB: {} } }
 }

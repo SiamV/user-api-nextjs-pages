@@ -4,7 +4,7 @@ import { API_URL } from "../lib/constants/config";
 export class ApiClient {
     async getAll() {
         try {
-            return await axios.get(`${API_URL}`);
+            return await (await axios.get(`${API_URL}`)).data.data;
         } catch (e) {
             console.log(`Ошибка ${e.name} : ${e.message} \n ${e.stack}`);
         }
@@ -12,7 +12,7 @@ export class ApiClient {
 
     async getOne(id) {
         try {
-            return await axios.get(`${API_URL}/${id}`);
+            return await (await axios.get(`${API_URL}/${id}`)).data.data;
         } catch (e) {
             console.log(`Ошибка ${e.name} : ${e.message} \n ${e.stack}`);
         }

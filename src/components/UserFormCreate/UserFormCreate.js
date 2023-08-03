@@ -5,8 +5,7 @@ import classes from "../../styles/users.module.css";
 import Preloader from "../Preloader/Preloader";
 import { UserService } from "../../services/user.service";
 
-const UserFormCreate = (props) => {
-    const GetUserService = new UserService();
+const UserFormCreate = ({userUpdate, statusForm}) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,11 +17,11 @@ const UserFormCreate = (props) => {
     const [haveErrors, setHaveErrors] = useState(false);
 
     useEffect(() => {
-        props.userUpdate.name
-            ? setName(props.userUpdate.name)
+        userUpdate.name
+            ? setName(userUpdate.name)
             : (setName(""), setNameError("имя не может быть пустым!"))
-        props.userUpdate.email
-            ? setEmail(props.userUpdate.email)
+        userUpdate.email
+            ? setEmail(userUpdate.email)
             : (setEmail(""), setEmailError("email не может быть пустым!"))
         setPasswordError("пароль не может быть пустым!")
     }, []);
@@ -34,7 +33,7 @@ const UserFormCreate = (props) => {
     }, [nameError, emailError])
 
     const nameHandler = (e) => {
-        setName(e.target.value);
+        setName(e.target.value.trim());
         !e.target.value
             ? (setNameError("имя не может быть пустым!"))
             : (setNameError(""))
@@ -64,7 +63,7 @@ const UserFormCreate = (props) => {
 
     const addUserinDB = async () => {
         try {
-            await GetUserService.postUser(name, email, password);
+            await UserService.postUser(name, email, password);
             setResponseStatus(false);
         } catch (e) {
             console.log(e);
@@ -74,7 +73,7 @@ const UserFormCreate = (props) => {
 
     const updateUserInDB = async () => {
         try {
-            await GetUserService.updateUser(props.userUpdate._id, name, email);
+            await UserService.updateUser(userUpdate._id, name, email);
             setResponseStatus(false);
         } catch (e) {
             console.log(e);
@@ -83,7 +82,7 @@ const UserFormCreate = (props) => {
     }
 
     return <>
-        {props.statusForm ? <div>Заполните поля</div>
+        {statusForm ? <div>Заполните поля</div>
             : <div>Исправьте данные пользователя</div>}
 
         <form >
@@ -105,7 +104,7 @@ const UserFormCreate = (props) => {
                 {(!email || emailError) ? <div style={{ color: "red", fontSize: 12 }}>{emailError}</div> : <div></div>}
             </div>
 
-            {props.statusForm ?
+            {statusForm ?
                 <div>
                     <label htmlFor="password">Password: </label>
                     <input type="password"
@@ -118,7 +117,7 @@ const UserFormCreate = (props) => {
                 : <div></div>
             }
 
-            {props.statusForm ?
+            {statusForm ?
                 <div>
                     <Link href={"/users"} >
                         {!responseStatus ? <button type="button" className={classes.MenuButton}

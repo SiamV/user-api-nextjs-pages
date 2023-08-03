@@ -10,14 +10,13 @@ import { UserService } from '../../services/user.service';
 //Here I use SSR(Next.js) in server side
 //because I wount render htmls this dynamic pages in server for optimisation SEO
 const CreateUserPage = ({ userFromDB }) => {
-  const GetUserService = new UserService();
   const getRoutegParh = useRouter();
   const idUser = getRoutegParh.query.id;
   const [responseStatus, setResponseStatus] = useState(false);
 
   const deleteUserFromDB = async (idUser) => {
     try {
-      await GetUserService.deleteUser(idUser);
+      await UserService.deleteUser(idUser);
       setResponseStatus(false);
     } catch (e) {
       console.log(`Ошибка ${e.name} : ${e.message} \n ${e.stack}`);
@@ -55,9 +54,8 @@ const CreateUserPage = ({ userFromDB }) => {
 }
 
 export const getServerSideProps = async ({ params }) => {
-  const GetUserService = new UserService();
-  const user = await GetUserService.getUser(params.id);
-  return { props: { userFromDB: user.data.data } }
+  const user = await UserService.getUser(params.id);
+  return { props: { userFromDB: user } }
 }
 
 export default CreateUserPage;
